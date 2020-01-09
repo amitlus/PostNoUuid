@@ -11,6 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from TheApp.forms import PostForm, CommentForm
 from django.urls import reverse_lazy
 from django.utils import timezone
+import random
 
 
 # Create your views here.
@@ -90,7 +91,7 @@ class PostListView(ListView):
 
 
     def get_queryset(self):
-        return Post.objects.order_by('-create_date')
+        return Post.objects.order_by('?')
 # בעצם מחזיר לי את הערכים כLIST שמסודר לפי תאריך היצירה מהחדש לישן.. בלי המינוס זה היה הפו
 
 
@@ -163,3 +164,9 @@ def comment_remove(request, pk):
         return redirect('TheApp:post_detail', pk=post_pk)
     else:
          return HttpResponse('You are not the author of this comment. Access denied')
+
+
+def personalposts(request):
+    items = sorted(Post.objects.all(), key=lambda x: random.random())
+    items = items[:10]
+    return render(request, 'TheApp/personalposts.html', {'items':items})

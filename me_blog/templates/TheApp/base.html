@@ -40,8 +40,9 @@
 
             {% if user.is_authenticated %}
                       <li><a class= 'nav-link' href="{% url 'logout' %}">Logout</a></li>
-                      <li><a class="nav-link" href="{% url 'TheApp:post_list' %}">{{ user.username }}</a></li>
+                      <li><a class="nav-link" href="{% url 'TheApp:personalposts' %}">{{ user.username }}</a></li>
                       <li><a class="nav-link" href="{% url 'TheApp:post_form' %}">New Post</a></li>
+                      <li><a class="nav-link" href="{% url 'TheApp:post_list' %}">Explore</a></li>
 
                       {% else %}
                       <li><a class= 'nav-link' href="{% url 'TheApp:user_login' %}">Login</a></li>

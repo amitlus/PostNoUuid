@@ -6,7 +6,7 @@
 
 {% if thelist %}
 <div class="container" style = "padding-bottom: 130px; margin:auto;">
-  {% for post in thelist %} <!--#הדיפולט אם לא הגדרנו משהו אחר בListView-->
+  {% for post in thelist|slice:":4" %} <!-- עשיתי שהמערך שחוזר יכיל רק 4 ערכים -->
 
   <div class="post">
     <h3><a href="{% url 'TheApp:post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
