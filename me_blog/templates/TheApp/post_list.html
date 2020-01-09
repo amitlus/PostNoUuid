@@ -1,0 +1,28 @@
+<!--רשימה של כל הפוסטים שנוצרו. נמצאת תחת הלינק בסרגל למעלה עם השם של המשתמש-->
+
+{% extends "TheApp/base.html" %}
+{% load static %}
+{% block body_block %}
+
+{% if thelist %}
+<div class="container" style = "padding-bottom: 130px; margin:auto;">
+  {% for post in thelist %} <!--#הדיפולט אם לא הגדרנו משהו אחר בListView-->
+
+  <div class="post">
+    <h3><a href="{% url 'TheApp:post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
+    <div class="date">
+      <p>Published on: {{post.create_date|date:"D M Y"}}</p>
+      <p>By: {{post.author}}</p>
+    </div>
+    <a href="{% url 'TheApp:post_detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a>
+  </div>
+  <br>
+  {% endfor %}
+</div>
+
+{% else %}
+<h2>No Posts Created</h2>
+
+
+{% endif %}
+{% endblock %}
