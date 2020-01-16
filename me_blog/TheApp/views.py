@@ -88,6 +88,7 @@ def user_login(request):
 class PostListView(ListView):
     model = Post
     context_object_name = 'thelist'
+    template_name = 'TheApp/explore.html'
 
 
     def get_queryset(self):
@@ -167,6 +168,7 @@ def comment_remove(request, pk):
 
 
 def personalposts(request):
-    items = sorted(Post.objects.all(), key=lambda x: random.random())
-    items = items[:10]
+
+    items = Post.objects.filter(author=request.user)
+
     return render(request, 'TheApp/personalposts.html', {'items':items})

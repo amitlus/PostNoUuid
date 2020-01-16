@@ -8,7 +8,7 @@
 <div class="container" style = "padding-bottom: 130px; margin:auto;">
   {% for post in thelist|slice:":4" %} <!-- עשיתי שהמערך שחוזר יכיל רק 4 ערכים -->
 
-  <div class="post">
+  <div class="post" style="border-style:ridge; border-radius: 5px; padding: 10px;">
     <h3><a href="{% url 'TheApp:post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
     <div class="date">
       <p>Published on: {{post.create_date|date:"D M Y"}}</p>

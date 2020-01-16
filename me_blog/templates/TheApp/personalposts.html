@@ -1,0 +1,15 @@
+{% extends "TheApp/base.html" %}
+
+{% load static %}
+{% block body_block %}
+
+<div class="container" style="padding-bottom: 130px; margin:auto;">
+
+{% for item in items %}
+  <div class="container" style="border-style:ridge; border-radius: 5px;">
+      <p>Post Name: {{item|linebreaks}}</p>
+  </div>
+
+{%endfor%}
+</div>
+{% endblock %}
