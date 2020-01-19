@@ -16,6 +16,7 @@ urlpatterns = [
     path('comment/<int:pk>/remove/', views.comment_remove, name='comment_remove'),
     path('explore/', views.PostListView.as_view(), name='post_list'),
     path('<str:user.username>/', views.personalposts, name='personalposts'),
+    path('topposts/', views.top, name='top_posts'),
 
 
 ]

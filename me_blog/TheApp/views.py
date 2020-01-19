@@ -99,6 +99,15 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
 
+    def get_context_data(self, **kwargs):
+        context = super(DetailView, self).get_context_data(**kwargs)
+        obj = self.get_object()
+        obj.post_views = obj.post_views + 1
+        obj.save()
+        return context
+
+
+
 class CreatePostView(LoginRequiredMixin, CreateView):
     login_url = '/login/' #attribute של הmixin .. אם מישהו לא מחובר זה מפנה אותו להתחבר
     redirect_field_name = 'TheApp/post_detail.html'
@@ -168,7 +177,10 @@ def comment_remove(request, pk):
 
 
 def personalposts(request):
-
     items = Post.objects.filter(author=request.user)
-
     return render(request, 'TheApp/personalposts.html', {'items':items})
+
+
+def top(request):
+    top_posts = Post.objects.order_by('-post_views')
+    return render(request, 'TheApp/top.html', {'top_posts':top_posts})
