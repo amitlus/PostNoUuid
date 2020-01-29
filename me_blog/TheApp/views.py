@@ -16,7 +16,8 @@ import random
 
 # Create your views here.
 def index(request):
-    return render(request, 'TheApp/index.html')
+    top_posts = Post.objects.order_by('-post_views')
+    return render(request, 'TheApp/index.html', {'top_posts':top_posts})
 
 
 @login_required

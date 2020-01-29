@@ -3,17 +3,15 @@
 {% block body_block %}
 
 
-<h1 class="container">{{post.title}}</h1>
+<h3 class="container" style="padding-top: 10px; margin-top:60px;">{{post.title}}</h3>
+<br>
 <div class="container">
-  {{ post.create_date }}
+
+<p>{{ post.text }}</p>
+<p style="font-size:14px;"><span class="MyClass"> Created By:</span>  {{ post.author }}</p> <!-- פתרון לעיצוב חלק משורת הטקסט-->
+<p style="font-size:14px;"><span class="MyClass"> Published On:</span>  {{ post.create_date }}</p>
+
 </div>
-
-
-<p class='postcontent'>{{ post.text }}</p>
-
-<p class='container'>Created By: {{ post.author }}</p>
-
-
 
 <!-- כל משתמש מחובר יכול להוסיף תגובה -->
 {% if user.is_authenticated %}
@@ -33,12 +31,13 @@
 
 
 
-<div class="container">
+<div class="container" style="padding-bottom: 130px; margin:auto;">
   {% for comment in post.comments.all %}
   <br>
-  {{comment.create_date}}
+  <p><b>Comments:</b></p>
   <p>{{comment.text|safe|linebreaks}}</p>
-  <p>Posted by: {{comment.author}}</p>
+  <p style="font-size:14px;"><span class="MyClass"> Posted By:</span>  {{comment.author}}</p>
+  <p style="font-size:14px;"><span class="MyClass"> Published On:</span>  {{comment.create_date}}</p>
   <br>
 
 <!-- אם המשתמש מחובר והוא זה שכתב את התגובה או את הפוסט, הוא יהיה רשאי למחוק את התגובה -->
@@ -51,6 +50,7 @@
   {% endif %}
 {% endif %}
   {% empty %}
+  <br>
   <p>No Comments</p>
   {% endfor %}
 
