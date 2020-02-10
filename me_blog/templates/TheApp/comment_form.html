@@ -1,12 +1,10 @@
 {% extends "TheApp/base.html" %}
 {% load static %}
 {% block body_block %}
-  <h1 class="MyClass" style="margin-top:60px; margin-bottom:20px;">New Comment</h1>
+  <h1>New Comment</h1>
   <form class="post-form"method="post">
     {% csrf_token %}
-    <label class="MyClass">{{ form.text.label_tag }}</label>
-    {{form.text}}
-    <br>
+    {{ form.as_p }}
     <button type="submit" class="btn btn-primary">Post Comment</button>
   </form>
 
